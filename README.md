@@ -77,7 +77,9 @@ Growth is not linear. An economy remains trapped in a Malthusian stagnation unti
 
 To validate this theory, I merged macro-cultural data (WVS) with micro-behavioral data (Falk et al.). The resulting **Correlation Matrix** confirms the OLG predictions with high precision.
 
-![Correlation Heatmap](./heatmap_preview.png)
+<p align="center">
+  <img src="./heatmap_preview.PNG" alt="Correlation Heatmap" width="80%">
+</p>
 
 ### Interpretation of Results
 
@@ -98,7 +100,9 @@ To validate this theory, I merged macro-cultural data (WVS) with micro-behaviora
 ## 🗺️ Visualizing the Cultural Transition
 The map below tracks the global decline of "Obedience" and the rise of "Independence" over 40 years. Darker regions (Scandinavia, Western Europe) represent societies that have successfully crossed the critical mass threshold ($\hat{e}$).
 
-![Independence Map](./map_preview.png)
+<p align="center">
+  <img src="./map_preview.PNG" alt="Correlation Heatmap" width="80%">
+</p>
 
 ---
 
@@ -106,7 +110,7 @@ The map below tracks the global decline of "Obedience" and the rise of "Independ
 
 * ** [Read the Full Report (PDF)](./Report.pdf)**: The complete academic report. Includes mathematical proofs of the OLG propositions and detailed country-level case studies (USA vs. Norway vs. China).
 * ** [View the Python Code](./Cultural_Analysis.py)**: The full Python script used for data cleaning, merging, and visualization.
-* **`Data/`**: Contains snapshots of the datasets used (Note: Full GPS data available via the Briq Institute).
+
 
 ---
 
