@@ -1,36 +1,57 @@
-# Cultural-Transmission-Economic-Growth
-This study investigates the intergenerational transmission of cultural values and their impact on sustainable economic growth. Utilizing the Overlapping Generations (OLG) Model framework, I analyze how specific traits—Independence, Religious Faith, and Obedience—shift over time and correlate with economic development.
-<img width="490" height="188" alt="data cleaning" src="https://github.com/user-attachments/assets/ebfec91e-2601-43eb-b869-34b34376bb8a" />
-<img width="1257" height="673" alt="Heatmap" src="https://github.com/user-attachments/assets/d58eea85-03d0-4dcf-bd27-90e5945a67ef" />
-<img width="1268" height="689" alt="Independence Map 1981-2022" src="https://github.com/user-attachments/assets/f0d7af45-c7c6-4199-bd85-b25355deb246" />
-[Report_Behavioral.pdf](https://github.com/user-attachments/files/25390087/Report_Behavioral.pdf)
-[Behavioral_Python.py](https://github.com/user-attachments/files/25390092/Behavioral_Python.py)
+# Cultural Transmission & Economic Growth
+**A Case Study on Behavioral Macroeconomics using Python**
 
-  # Case Study: Cultural Transmission & Economic Growth
-**A Data-Driven Analysis using OLG Models and Behavioral Economics**
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=for-the-badge&logo=pandas)
+![Plotly](https://img.shields.io/badge/Plotly-Visualization-3F4F75?style=for-the-badge&logo=plotly)
 
-**Author:** Irene Kontiza  
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=for-the-badge&logo=pandas)](https://pandas.pydata.org/)
-[![Plotly](https://img.shields.io/badge/Plotly-Visualization-3F4F75?style=for-the-badge&logo=plotly)](https://plotly.com/)
+This project explores the intergenerational transmission of cultural values and their impact on sustainable economic growth using the **Overlapping Generations (OLG) Model**.
 
 ---
 
-## 1. Executive Summary & Methodology
-This study investigates the intergenerational transmission of cultural values and their impact on sustainable economic growth. Utilizing the **Overlapping Generations (OLG) Model**, I analyze how traits like **Independence**, **Religious Faith**, and **Obedience** shift over time.
+## Table of Contents
+* [1. Project Overview](#1-project-overview)
+* [2. Theoretical Framework](#2-theoretical-framework)
+* [3. Data Pipeline & Cleaning](#3-data-pipeline--cleaning)
+* [4. Geospatial Analysis](#4-geospatial-analysis)
+* [5. Statistical Validation](#5-statistical-validation)
+* [6. Files & Resources](#6-files--resources)
 
-### 1.1 Data Pipeline
-Data was sourced from the **World Values Survey (WVS)** and cleaned using Python. Below is the logic used to filter negative values and aggregate the data by country.
+---
 
-> **Note:** The full executable code can be found in the [`src/`](src/analysis_code.py) folder.
+## 1. Project Overview
+The goal of this analysis is to investigate how cultural traits—specifically **Independence** vs. **Obedience**—shift over time and correlate with economic development.
+
+Using data from the **World Values Survey (WVS)** and **Global Preference Survey (GPS)**, I test the hypothesis that economic "take-off" requires a critical mass of "Materialist" agents who value autonomy and future investment over traditional obedience.
+
+---
+
+## 2. Theoretical Framework
+The analysis is grounded in the **Bisin & Verdier** cultural transmission model.
+* **Non-Materialists ($N$):** Derive utility from tradition and obedience.
+* **Materialists ($M$):** Derive utility from wealth/innovation and possess high **Patience**.
+
+### Hofstede's Cultural Dimensions
+I cross-referenced WVS data with Hofstede’s dimensions for USA, Norway, and China. A key finding is China's "Paradox": High Independence scores (70%) despite a collectivist history, indicating **Self-Reliance** as a modern survival mechanism.
+
+*(Insert your chart below)*
+![Hofstede Analysis](hofstede_chart.png)
+
+---
+
+## 3. Data Pipeline & Cleaning
+Raw data from WVS contained negative dummy variables for non-responses. Using `pandas`, I cleaned the dataset and aggregated it by country to create time-series averages.
 
 ```python
-# --- Data Cleaning Snippet ---
-# Filtering out negative values (-1, -2 representing "Don't Know")
+# --- Python Code Snippet: Data Cleaning ---
+import pandas as pd
+
+# 1. Filtering out negative values (-1, -2 representing "Don't Know")
 wvs_clean = wvs_raw[wvs_raw['Independence'] >= 0]
 
-# Aggregating by Country to create Time-Series averages
+# 2. Aggregating by Country to create Time-Series averages
 final_data = wvs_clean.groupby('COW_ALPHA')[
     ['Obedience', 'Religious_Faith', 'Independence']
 ].mean().reset_index()
 
+print("Data Cleaning Complete. Rows:", len(final_data))
