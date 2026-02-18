@@ -35,7 +35,7 @@ The analysis is grounded in the **Bisin & Verdier** cultural transmission model.
 I cross-referenced WVS data with Hofstede’s dimensions for USA, Norway, and China. A key finding is China's "Paradox": High Independence scores (70%) despite a collectivist history, indicating **Self-Reliance** as a modern survival mechanism.
 
 *(Insert your chart below)*
-![Hofstede Analysis](hofstede_chart.png)
+![Hofstede Analysis](hofstede chart.png)
 
 ---
 
@@ -55,3 +55,38 @@ final_data = wvs_clean.groupby('COW_ALPHA')[
 ].mean().reset_index()
 
 print("Data Cleaning Complete. Rows:", len(final_data))
+
+
+4. Geospatial Analysis
+
+Using Plotly, I visualized the global shift from "Obedience" to "Independence" over 40 years.
+The Rise of Independence
+
+As productivity increases, the market rewards innovation. The map below shows the high concentration of "Independence" in developed economies, confirming the OLG prediction.
+
+Figure 1: Global distribution of Independence. Darker regions indicate higher intensity.
+5. Statistical Validation
+
+To validate the macro-cultural findings, I integrated micro-behavioral data from Falk et al. (2018).
+Methodology
+
+I performed an inner merge between the WVS (Cultural) and GPS (Behavioral) datasets and calculated the Pearson Correlation Matrix.
+# --- Python Code Snippet: Merging & Correlation ---
+
+# Inner join ensures we only analyze countries present in both datasets
+merged_data = pd.merge(wvs_subset, gps_data, left_on='COW_ALPHA', right_on='ISO3', how='inner')
+
+# Calculating Pearson Correlation
+corr_matrix = merged_data[['Independence', 'patienceQJE', 'risktaking']].corr()
+
+Key Findings
+
+The Heatmap below confirms the theory:
+
+    Patience vs. Obedience: Strong negative correlation (-0.498). Traditional societies prioritize immediate utility.
+
+    Risk Taking: Positively correlated with Independence (+0.237).
+
+File	Description
+Report.pdf	The full economic analysis and mathematical proofs.
+analysis_code.py	The complete Python script used for this project.
