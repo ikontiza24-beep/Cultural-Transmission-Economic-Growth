@@ -1,5 +1,5 @@
 # 🌍 Cultural Transmission & Economic Growth: An OLG Approach
-
+## Eirini Kontiza
 > **Project:** Behavioral Macroeconomics & Data Science
 > **Tools:** Python (Pandas, Plotly), LyX/LaTeX, OLG Modeling
 > **Data:** World Values Survey (WVS) & Global Preference Survey (Falk et al.)
